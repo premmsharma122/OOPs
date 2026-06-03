@@ -20,7 +20,7 @@ class University{
     private String universityName;
     private String universityCode;
 
-    // has a relation
+    // has a relation (Aggregation Relation)
     private Professor professor;
     University(String universityName, String universityCode, Professor professor){
         this.universityCode=universityCode;
