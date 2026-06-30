@@ -6,6 +6,40 @@ public class day1 {
         print(n-1);
         System.out.println(n);
     }
+    public static void merge(int arr[], int l, int m, int r){
+        int n1 = m-l+1;
+        int n2 = r-m;
+        int L[] = new int[n1];
+        int R[] = new int[n2];
+        for(int i=0; i<n1; i++){
+            L[i]=arr[l+i];
+        }
+        for(int j=0; j<n2; j++){
+            R[j]=arr[m+1+j];
+        }
+        int i=0, j=0;
+        int k=l;
+        while(i<n1 && j<n2){
+            if(L[i]<=R[j]){
+                arr[k]=L[i];
+                i++;
+            }else{
+                arr[k]=R[j];
+                j++;
+            }
+            k++;
+        }
+        while(i<n1){
+            arr[k]=L[i];
+            i++;
+            k++;
+        }
+        while(j<n2){
+            arr[k]=R[j];
+            j++;
+            k++;
+        }
+    }
     public static void main(String[] args) {
        Scanner sc = new Scanner(System.in);
     //    int salary = sc.nextInt();
@@ -98,7 +132,7 @@ public class day1 {
         // }
 
         // linear search-
-        int arr[] = {1,4,5,2,4,6,7};
+        int arr[] = {1,4,5,2,4,6,7,1,2,10,4};
         int n= arr.length , trg = 7;
         // for(int i=0; i<n; i++){
         //     if(arr[i]==trg){
@@ -121,38 +155,64 @@ public class day1 {
         // }
 
         // bubble sort - 
-        for(int i=0; i<n-1; i++){
-            for(int j=0; j<n-i-1; j++){
-                if(arr[j]>arr[j+1]){
-                    int temp = arr[j];
-                    arr[j]=arr[j+1];
-                    arr[j+1]=temp;
-                }
-            }
-        }
+        // for(int i=0; i<n-1; i++){
+        //     for(int j=0; j<n-i-1; j++){
+        //         if(arr[j]>arr[j+1]){
+        //             int temp = arr[j];
+        //             arr[j]=arr[j+1];
+        //             arr[j+1]=temp;
+        //         }
+        //     }
+        // }
+        // for(int a : arr){
+        //     System.out.print(a+" ");
+        // }
+        // selection sort -
+        //System.out.println("Selection Sort: ");
+
+        // for(int i=0; i<n-1; i++){
+        //     int min = i;
+        //     for(int j=i+1; j<n; j++){
+        //         if(arr[j]<arr[min]){
+        //             min = j;
+        //         }
+        //     }
+        //     int temp = arr[i];
+        //     arr[i]=arr[min];
+        //     arr[min]=temp;
+        // }
+        // int len=10;
+        // print(len);
+        
+        // insertion sort -
+        // for(int i=1; i<n; i++){
+        //     int key = arr[i];
+        //     int j=i-1;
+        //     while(j>=0 && arr[j]>key){
+        //         arr[j+1]=arr[j];
+        //         j--;
+        //     }
+        //     arr[j+1]=key;
+        // }
+
+        // merge sort :
         for(int a : arr){
             System.out.print(a+" ");
         }
-        // selection sort -
-        System.out.println("Selection Sort: ");
-
-        for(int i=0; i<n-1; i++){
-            int min = i;
-            for(int j=i+1; j<n; j++){
-                if(arr[j]<arr[min]){
-                    min = j;
-                }
-            }
-            int temp = arr[i];
-            arr[i]=arr[min];
-            arr[min]=temp;
+        System.out.println("Merge sort :");
+        int l =0, r=n-1;
+        while(l<r){
+            int m = l+(r-l)/2;
+            merge(arr, l, m, r);
+            l++;
+            r--;
         }
-        int len=10;
-        print(len);
         
-        
-        
-        
+        System.out.println("After merge sort :");
+
+          for(int a : arr){
+            System.out.print(a+" ");
+        }
 
     }
 }
