@@ -40,6 +40,22 @@ public class day1 {
             k++;
         }
     }
+    public static int size =10;
+    public static int arr[]=new int[size];
+    public static int top=-1;
+    public static void  push(int num){
+        if(top==size){
+            System.out.println("Stack overflow");
+            return;
+        }
+        top++;
+        arr[top]=num;
+    }
+    public static void display(){
+        for(int i=top; i>=0; i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
     public static void main(String[] args) {
        Scanner sc = new Scanner(System.in);
     //    int salary = sc.nextInt();
@@ -196,23 +212,25 @@ public class day1 {
         // }
 
         // merge sort :
-        for(int a : arr){
-            System.out.print(a+" ");
-        }
-        System.out.println("Merge sort :");
-        int l =0, r=n-1;
-        while(l<r){
-            int m = l+(r-l)/2;
-            merge(arr, l, m, r);
-            l++;
-            r--;
-        }
+        // for(int a : arr){
+        //     System.out.print(a+" ");
+        // }
+        // System.out.println("Merge sort :");
+        // int l =0, r=n-1;
+        // while(l<r){
+        //     int m = l+(r-l)/2;
+        //     merge(arr, l, m, r);
+        //     l++;
+        //     r--;
+        // }
         
-        System.out.println("After merge sort :");
+        // System.out.println("After merge sort :");
 
-          for(int a : arr){
-            System.out.print(a+" ");
-        }
+        //   for(int a : arr){
+        //     System.out.print(a+" ");
+        // }
+        push(1);
+        display();
 
     }
 }
