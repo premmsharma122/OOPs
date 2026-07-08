@@ -90,6 +90,7 @@ public class day23 {
         s1.displayScreen();
         b1.powerOn();
         c1.capturePhoto();
+        System.out.println();
         factory = new AppleFactory();
         Screen s2 = factory.createScreen();
         Battery b2 = factory.createBattery();
