@@ -1,4 +1,4 @@
-package Day5;
+package Day05;
 
 class Professor{
     private int professorId;

@@ -1,4 +1,4 @@
-package Day8;
+package Day08;
 interface PaymentStrategy{
     void pay(double amount);
 }
