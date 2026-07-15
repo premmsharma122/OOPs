@@ -1,63 +1,133 @@
 import java.util.Scanner;
 
 public class day1 {
-    public static void print(int n){
-        if(n==0) return;
-        print(n-1);
-        System.out.println(n);
-    }
-    public static void merge(int arr[], int l, int m, int r){
-        int n1 = m-l+1;
-        int n2 = r-m;
-        int L[] = new int[n1];
-        int R[] = new int[n2];
-        for(int i=0; i<n1; i++){
-            L[i]=arr[l+i];
+    // public static void print(int n){
+    //     if(n==0) return;
+    //     print(n-1);
+    //     System.out.println(n);
+    // }
+    // public static void merge(int arr[], int l, int m, int r){
+    //     int n1 = m-l+1;
+    //     int n2 = r-m;
+    //     int L[] = new int[n1];
+    //     int R[] = new int[n2];
+    //     for(int i=0; i<n1; i++){
+    //         L[i]=arr[l+i];
+    //     }
+    //     for(int j=0; j<n2; j++){
+    //         R[j]=arr[m+1+j];
+    //     }
+    //     int i=0, j=0;
+    //     int k=l;
+    //     while(i<n1 && j<n2){
+    //         if(L[i]<=R[j]){
+    //             arr[k]=L[i];
+    //             i++;
+    //         }else{
+    //             arr[k]=R[j];
+    //             j++;
+    //         }
+    //         k++;
+    //     }
+    //     while(i<n1){
+    //         arr[k]=L[i];
+    //         i++;
+    //         k++;
+    //     }
+    //     while(j<n2){
+    //         arr[k]=R[j];
+    //         j++;
+    //         k++;
+    //     }
+    // }
+    // public static int size =10;
+    // public static int arr[]=new int[size];
+    // public static int top=-1;
+    // public static void  push(int num){
+    //     if(top==size){
+    //         System.out.println("Stack overflow");
+    //         return;
+    //     }
+    //     top++;
+    //     arr[top]=num;
+    // }
+    // public static void display(){
+    //     for(int i=top; i>=0; i++){
+    //         System.out.print(arr[i]+" ");
+    //     }
+    // }
+     
+    // static class Node {
+    //     int data;
+    //     Node left, right;
+
+    //     Node(int data) {
+    //         this.data = data;
+    //         left = right = null;
+    //     }
+    // }
+
+    // static Node root;
+
+    // public Node createNode(Scanner sc) {
+    //     System.out.println("Enter data (-1 for NULL): ");
+    //     int data = sc.nextInt();
+
+    //     if (data == -1) {
+    //         return null;
+    //     }
+
+    //     Node node = new Node(data);
+
+    //     System.out.println("Does " + data + " have left child? (true/false)");
+    //     boolean leftChild = sc.nextBoolean();
+    //     if (leftChild) {
+    //         node.left = createNode(sc);
+    //     }
+
+    //     System.out.println("Does " + data + " have right child? (true/false)");
+    //     boolean rightChild = sc.nextBoolean();
+    //     if (rightChild) {
+    //         node.right = createNode(sc);
+    //     }
+
+    //     return node;
+    // }
+
+    // public void display(Node root) {
+    //     if (root == null)
+    //         return;
+
+    //     System.out.print(root.data + " ");
+    //     display(root.left);
+    //     display(root.right);
+    // }
+    public static int dp[][];
+    public static int paths(int n, int m , int d, int r){
+        if(d==0 && r==0 ){
+            return 1;
         }
-        for(int j=0; j<n2; j++){
-            R[j]=arr[m+1+j];
-        }
-        int i=0, j=0;
-        int k=l;
-        while(i<n1 && j<n2){
-            if(L[i]<=R[j]){
-                arr[k]=L[i];
-                i++;
-            }else{
-                arr[k]=R[j];
-                j++;
-            }
-            k++;
-        }
-        while(i<n1){
-            arr[k]=L[i];
-            i++;
-            k++;
-        }
-        while(j<n2){
-            arr[k]=R[j];
-            j++;
-            k++;
-        }
-    }
-    public static int size =10;
-    public static int arr[]=new int[size];
-    public static int top=-1;
-    public static void  push(int num){
-        if(top==size){
-            System.out.println("Stack overflow");
-            return;
-        }
-        top++;
-        arr[top]=num;
-    }
-    public static void display(){
-        for(int i=top; i>=0; i++){
-            System.out.print(arr[i]+" ");
-        }
+        if(d<0 || r<0) return 0;
+        if(d>=n || r>=m) return 0;
+        if(dp[d][r]!=-1) return dp[d][r];
+        return dp[d][r]= paths(n, m, d+1, r) + paths(n, m,d,r+1);
     }
     public static void main(String[] args) {
        Scanner sc = new Scanner(System.in);
+       dp = new int[100][100];
+       for(int i=0; i<100; i++){
+           for(int j=0; j<100; j++){
+               dp[i][j] = -1;
+           }
+       }
+        // day1 obj = new day1();
+
+        // root = obj.createNode(sc);
+
+        // System.out.println("Preorder Traversal:");
+        // obj.display(root);
+
+        
     //    int salary = sc.nextInt();
     //    double inc = sc.nextDouble();
     //    System.out.println("Output: ");
@@ -229,8 +299,8 @@ public class day1 {
         //   for(int a : arr){
         //     System.out.print(a+" ");
         // }
-        push(1);
-        display();
+        // push(1);
+        // display();
 
     }
 }
